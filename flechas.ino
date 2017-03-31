@@ -13,26 +13,34 @@ void setup() {
 }
 
 void loop() {
-  
+
   matriz.cleanMatrix();
-  int _left = digitalRead(pinLeft);
-  int _right = digitalRead(pinRight);
-  
-  up();
-  right();
-  down();
-  left();
- 
+  int joyUpDown = analogRead(A5);
+  int joyRightLeft = analogRead(A4);
+
+  Serial.println(joyUpDown);
+  Serial.println(joyRightLeft);
+
+  if (joyUpDown > 650) {
+    up();
+  }else if (joyUpDown < 400) {
+    down();
+  }else if (joyRightLeft > 650) {
+    right();
+  }else if (joyRightLeft < 400) {
+    left();
+  }
+   
 }
 
 void printPatron(int a[5][7]) {
 
   for (int i = 0; i < 5; i++) {
-    for (int j = 0; j < 7; j++) {      
+    for (int j = 0; j < 7; j++) {
       if (a[i][j] == 0) {
-        matriz.deletePixel(i+1, j+1);
+        matriz.deletePixel(i + 1, j + 1);
       } else {
-        matriz.newPixel(i+1, j+1);
+        matriz.newPixel(i + 1, j + 1);
       }
     }
   }
@@ -40,12 +48,12 @@ void printPatron(int a[5][7]) {
 }
 
 void right() {
-   int p[5][7] = {
-    {0,0,0,0,1,0,0},
-    {0,0,0,0,0,1,0},
-    {1,1,1,1,1,1,1},
-    {0,0,0,0,0,1,0},
-    {0,0,0,0,1,0,0}
+  int p[5][7] = {
+    {0, 0, 0, 0, 1, 0, 0},
+    {0, 0, 0, 0, 0, 1, 0},
+    {1, 1, 1, 1, 1, 1, 1},
+    {0, 0, 0, 0, 0, 1, 0},
+    {0, 0, 0, 0, 1, 0, 0}
   };
 
   printPatron(p);
@@ -54,11 +62,11 @@ void right() {
 void left() {
 
   int p[5][7] = {
-    {0,0,1,0,0,0,0},
-    {0,1,0,0,0,0,0},
-    {1,1,1,1,1,1,1},
-    {0,1,0,0,0,0,0},
-    {0,0,1,0,0,0,0}
+    {0, 0, 1, 0, 0, 0, 0},
+    {0, 1, 0, 0, 0, 0, 0},
+    {1, 1, 1, 1, 1, 1, 1},
+    {0, 1, 0, 0, 0, 0, 0},
+    {0, 0, 1, 0, 0, 0, 0}
   };
 
   printPatron(p);
@@ -66,11 +74,11 @@ void left() {
 
 void up() {
   int p[5][7] = {
-    {0,0,0,1,0,0,0},
-    {0,0,1,1,1,0,0},
-    {0,1,0,1,0,1,0},
-    {0,0,0,1,0,0,0},
-    {0,0,0,1,0,0,0}
+    {0, 0, 0, 1, 0, 0, 0},
+    {0, 0, 1, 1, 1, 0, 0},
+    {0, 1, 0, 1, 0, 1, 0},
+    {0, 0, 0, 1, 0, 0, 0},
+    {0, 0, 0, 1, 0, 0, 0}
   };
 
   printPatron(p);
@@ -78,11 +86,11 @@ void up() {
 
 void down() {
   int p[5][7] = {
-    {0,0,0,1,0,0,0},
-    {0,0,0,1,0,0,0},
-    {0,1,0,1,0,1,0},
-    {0,0,1,1,1,0,0},
-    {0,0,0,1,0,0,0}
+    {0, 0, 0, 1, 0, 0, 0},
+    {0, 0, 0, 1, 0, 0, 0},
+    {0, 1, 0, 1, 0, 1, 0},
+    {0, 0, 1, 1, 1, 0, 0},
+    {0, 0, 0, 1, 0, 0, 0}
   };
 
   printPatron(p);
