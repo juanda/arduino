@@ -2,14 +2,15 @@
 
 Matriz matriz = Matriz(6, 9, 5);
 
-int pinLeft = 2;
-int pinRight = 3;
-float timeRefresh = 0.5;
+int leftThreshold  = 400;
+int rightThreshold = 620;
+int downThreshold  = 400;
+int upThreshold    = 620;
+
+float timeRefresh  = 0.5;
 
 void setup() {
   Serial.begin(9600);
-  pinMode(2, INPUT);
-
 }
 
 void loop() {
@@ -21,13 +22,13 @@ void loop() {
   Serial.println(joyUpDown);
   Serial.println(joyRightLeft);
 
-  if (joyUpDown > 650) {
+  if (joyUpDown > upThreshold) {
     up();
-  }else if (joyUpDown < 400) {
+  }else if (joyUpDown < downThreshold) {
     down();
-  }else if (joyRightLeft > 650) {
+  }else if (joyRightLeft > rightThreshold) {
     right();
-  }else if (joyRightLeft < 400) {
+  }else if (joyRightLeft < leftThreshold) {
     left();
   }
    
